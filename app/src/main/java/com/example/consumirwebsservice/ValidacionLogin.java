@@ -25,8 +25,9 @@ public class ValidacionLogin extends AppCompatActivity implements Asynchtask
         //Construimos el mensaje a mostrartx
         Map<String, String> datos = new HashMap<String, String>();
         WebService ws= new WebService("http://uealecpeterson.net/ws/login.php?usr="
-                + bundle.getString("Usr") + "&pass=" + bundle.getString("clave"),
-                datos, ValidacionLogin.this, ValidacionLogin.this);ws.execute("GET");
+                + bundle.getString("NOMBRE") + "&pass=" + bundle.getString("CONTRASENA"),
+                datos, ValidacionLogin.this, ValidacionLogin.this);
+        ws.execute("GET");
 
 
     }
@@ -35,5 +36,7 @@ public class ValidacionLogin extends AppCompatActivity implements Asynchtask
     public void processFinish(String result) throws JSONException {
         //TextView txtSaludo = (TextView)findViewById(R.id.txtSaludo);
         //txtSaludo.setText("Hola!, Bienvenido \nSus datos son\nNombre: " +      bundle.getString("NOMBRE")+"\nContrasena: " + bundle.getString("CONTRASENA"));
+        TextView txtSaludo = (TextView)findViewById(R.id.txtSaludo);
+        txtSaludo.setText("La respuesta del Web Service:" + result);
     }
 }
