@@ -29,8 +29,6 @@ public class ValidacionLogin extends AppCompatActivity implements Asynchtask
                 + bundle.getString("NOMBRE") + "&pass=" + bundle.getString("CONTRASENA"),
                 datos, ValidacionLogin.this, ValidacionLogin.this);
         ws.execute("GET");
-
-
     }
 
     @Override

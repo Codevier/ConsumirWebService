@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
         WebService ws= new WebService("https://api-uat.kushkipagos.com/transfer-subscriptions/v1/bankList",
                 datos, MainActivity.this, MainActivity.this);
         ws.execute("GET","Public-Merchant-Id","86fb957359f04d9c8199c865b24cbd96");
+
+        //segunda libreria
         String url="https://api-uat.kushkipagos.com/transfer-subscriptions/v1/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
                     listaBancos2=listaBancos2+banco.getName().toString();
                 }
                 txtSaludo2.setText(listaBancos2);
-
-
             }
 
             @Override
@@ -78,6 +78,21 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
         Bundle b = new Bundle();
         b.putString("NOMBRE", txtNombre.getText().toString());
         b.putString("CONTRASENA", txtContraseña.getText().toString());
+        //Añadimos la información al intent
+        intent.putExtras(b);
+        // Iniciamos la nueva actividad
+        startActivity(intent);
+    }
+
+    public void EnviarPorRetrofit(View view){
+        //Creamos el Intent
+        Intent intent = new Intent(MainActivity.this, ValidacionLoginRetrofit.class);
+        EditText txtNombre2 = (EditText)findViewById(R.id.txtName);
+        EditText txtContraseña2 = (EditText)findViewById(R.id.txtPassword);
+        //Creamos la información a pasar entre actividades - Pares Key-Value
+        Bundle b = new Bundle();
+        b.putString("NOMBRE", txtNombre2.getText().toString());
+        b.putString("CONTRASENA", txtContraseña2.getText().toString());
         //Añadimos la información al intent
         intent.putExtras(b);
         // Iniciamos la nueva actividad
