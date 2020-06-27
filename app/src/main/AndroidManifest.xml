@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ValidacionLoginRetrofit"></activity>
+        <activity android:name=".ValidacionLoginVolley"></activity>
+        <activity android:name=".ValidacionLoginRetrofit" />
         <activity android:name=".ValidacionLogin" />
         <activity android:name=".MainActivity">
             <intent-filter>

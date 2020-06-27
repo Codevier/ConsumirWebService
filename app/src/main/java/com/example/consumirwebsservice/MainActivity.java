@@ -1,19 +1,31 @@
 package com.example.consumirwebsservice;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.consumirwebsservice.Retrofit2.BancoClass;
 import com.example.consumirwebsservice.Retrofit2.serviceRetrofit2;
 import com.example.consumirwebsservice.WebService.Asynchtask;
 import com.example.consumirwebsservice.WebService.WebService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +78,39 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
                 Log.e("error",t.toString());
             }
         });
-        //new PeticionConRetrifit().execute();
+        //Tercera libreria
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest(Request.Method.GET, "https://api-uat.kushkipagos.com/transfer-subscriptions/v1/bankList", null, new com.android.volley.Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                TextView txtSaludo3 = (TextView)findViewById(R.id.editTextTextMultiLine4);
+                String texto="";
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject object = null;
+                    try {
+                        object = response.getJSONObject(i);
+                        texto =texto+ object.getString("name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                txtSaludo3.setText(texto);
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap header = new HashMap();
+                header.put("Public-Merchant-Id", "86fb957359f04d9c8199c865b24cbd96");
+                return header;
+            }
+        };
+        queue.add(jsObjRequest);
 
     }
     public void Enviar(View view){
