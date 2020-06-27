@@ -47,15 +47,18 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="133dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginRight="134dp"
         android:layout_marginBottom="12dp"
         android:onClick="Enviar"
-        android:text="Libreria 1"
+        android:text="Clase"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -145,7 +148,7 @@
         android:layout_width="360dp"
         android:layout_height="20dp"
         android:layout_marginBottom="11dp"
-        android:text="TextView"
+        android:text="Lista con Volley"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine4"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
@@ -161,5 +164,18 @@
         android:text="Retrofit"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:onClick="EnviarPorValley"
+        android:text="Volley"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
